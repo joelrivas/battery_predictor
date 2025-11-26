@@ -1,0 +1,11 @@
+pyspark==3.4.0
+pandas
+pyarrow
+scikit-learn
+lightgbm
+apache-airflow==2.6.3
+fastapi
+uvicorn
+pytest
+joblib
+
