@@ -1,13 +1,18 @@
 """Ingest events"""
 
-import pandas as pd
-import numpy as np
 import argparse
 from datetime import datetime, timedelta
-
+import pandas as pd
+# pylint: disable=no-name-in-module
+from numpy.random import RandomState
 
 def generate_events(n=10000):
-    random_state = np.random.RandomState(856)
+    """
+    Generate random events recreating battery usage of devices.
+    
+    :param n: Number of events to generate
+    """
+    random_state = RandomState(seed=856)
     start = datetime.now()
     user_ids = random_state.randint(1, 1000, size=n)
     timestamps = []
@@ -18,11 +23,18 @@ def generate_events(n=10000):
     df = pd.DataFrame({
         "user_id": user_ids,
         "timestamp": timestamps,
-        "event_type": event_type
+        "event_type": event_type,
+        "battery": battery
     })
     return df
 
 def main(out, n):
+    """
+    Generate events and save them on output path.
+    
+    :param out: Output path for parquet file
+    :param n: Number of events to generate
+    """
     df = generate_events(n)
     df.to_parquet(out, index=False)
     print(f"-- Wrote {len(df)} events to {out}")
@@ -30,8 +42,10 @@ def main(out, n):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", type=str, required=True, help="Output path for events parquet file")
-    parser.add_argument("--n", type=int, default=10000, help="Number of events to generate")
-    
+    parser.add_argument("--out", type=str, required=True, 
+                        help="Output path for events parquet file")
+    parser.add_argument("--n", type=int, default=10000, 
+                        help="Number of events to generate")
+
     args = parser.parse_args()
     main(args.out, args.n)
