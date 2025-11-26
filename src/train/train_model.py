@@ -8,7 +8,7 @@ import joblib
 import pandas as pd
 from lightgbm import LGBMRegressor
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 
 
 def train(inp, model_out):
@@ -30,7 +30,7 @@ def train(inp, model_out):
 
     y_pred = model.predict(X_val)
     mae = mean_absolute_error(y_val, y_pred)
-    rmse = mean_squared_error(y_val, y_pred)
+    rmse = root_mean_squared_error(y_val, y_pred)
 
     os.makedirs(os.path.dirname(model_out), exist_ok=True)
     joblib.dump(model, model_out)

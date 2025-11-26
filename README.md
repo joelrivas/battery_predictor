@@ -9,7 +9,7 @@ To build a reproducible and scalable pipeline that predicts the remaining batter
 - LightGBM (or sklearn) for a fast, realistic model
 - Basic testing and data checks (*in progress*)
 
-### How to Run Locally (Dev)
+## How to Run Locally (Dev)
 Create virtual environment and dependencies: 
     
     python -m venv venv && source venv/bin/activate && pip install -r requirements.txt
@@ -33,6 +33,24 @@ Evaluate:
 Deployment:
 
     python src/api/app.py --model models/battery_model.pkl (in progress)    
+
+## Run the API
+
+    uvicorn api:app --host 0.0.0.0 --port 8080
+
+### Sample Request
+
+    curl -X POST http://localhost:8080/predict \
+    -H "Content-Type: application/json" \
+    -d '{
+        "last_battery": 0.23,
+        "mean_battery": 0.66,
+        "min_battery": 0.01,
+        "max_battery": 1.0,
+        "count_events": 412,
+        "std_battery": 0.23
+    }'
+
 
 ## What to Look for in the Repo
 

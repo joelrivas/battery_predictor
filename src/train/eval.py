@@ -23,7 +23,7 @@ def evaluate(model_path, test_path):
 
     y_pred = model.predict(X)
     print("-- Eval: MAE", mean_absolute_error(y, y_pred))
-    print("-- Eval: RMSE", root_mean_squared_error(y, y_pred, squared=False))
+    print("-- Eval: RMSE", root_mean_squared_error(y, y_pred))
 
 
 if __name__ == "__main__":
