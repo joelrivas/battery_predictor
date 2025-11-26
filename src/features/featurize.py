@@ -20,7 +20,7 @@ def featurize(df):
         mean_battery=("battery", "mean"),
         min_battery=("battery", "min"),
         max_battery=("battery", "max"),
-        count_battery=("battery", "count"),
+        count_events=("battery", "count"),
         std_battery=("battery", "std")
     ).reset_index().fillna(0)
 

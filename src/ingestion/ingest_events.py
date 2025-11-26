@@ -22,7 +22,7 @@ def generate_events(n=10000):
     battery = random_state.randint(3, 100, size=n)
     df = pd.DataFrame({
         "user_id": user_ids,
-        "timestamp": timestamps,
+        "ts": timestamps,
         "event_type": event_type,
         "battery": battery
     })
