@@ -1,4 +1,4 @@
-"""featurize..."""
+"""Feature engineering: create features from raw events."""
 
 import argparse
 import pandas as pd

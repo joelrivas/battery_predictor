@@ -3,12 +3,14 @@
 from fastapi import FastAPI
 import joblib
 import pandas as pd
+# pylint: disable=no-name-in-module
 from pydantic import BaseModel
 
 
 app = FastAPI()
 
 class BatteryInput(BaseModel):
+    """Input data model for battery prediction."""
     last_battery: float
     mean_battery: float
     min_battery: float
@@ -28,10 +30,10 @@ def health():
 @app.post("/predict")
 def predict(payload: BatteryInput):
     """Make a prediction using the pre-trained model."""
-    
+
     if model is None:
         return {"error": "Model not loaded"}
-    
+
     data = pd.DataFrame([payload.dict()])
     prediction = model.predict(data)
     return {"prediction": float(prediction[0])}
