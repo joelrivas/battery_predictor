@@ -16,11 +16,11 @@ Create virtual environment and dependencies:
 
 Generate sample data: 
     
-    python src/ingestion/ingest_events.py --out data/sample_events.parquet --n 10000
+    python src/ingestion/ingest_events.py --n_users 200 --minutes 1440 10000 --out sample_events
 
 Featurize:
 
-    python src/features/featurize.py --in data/sample_events.parquet --out data/features.parquet
+    python src/features/transform.py --in sample_events --out features --battery_threshold 0.10
 
 Train:
     
