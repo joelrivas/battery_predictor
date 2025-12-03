@@ -16,11 +16,11 @@ Create virtual environment and dependencies:
 
 Generate sample data: 
     
-    python src/ingestion/ingest_events.py --out data/sample_events.parquet --n 10000
+    python src/ingestion/ingest_events.py --n_users 200 --minutes 1440 --out sample_events
 
 Featurize:
 
-    python src/features/featurize.py --in data/sample_events.parquet --out data/features.parquet
+    python src/features/transform.py --in sample_events --out features --battery_threshold 0.10
 
 Train:
     
@@ -57,3 +57,23 @@ Deployment:
 - `src/features/featurize.py`: How to transform event series into features by window (last 24h, slope, variance, average usage).
 - `src/train/train_model.py`: Training pipeline with CV (Cross-Validation), metrics (RMSE, MAE), and persistence (saving).
 - `airflow/dags/battery_pipeline_dag.py`: DAG for ingest → featurize → train → deploy → monitor. (*in progress*)
+
+## Data Realism & Assumptions
+
+1. Simulation of 13,000 users, each with signals:
+    * battery drain based on a gamma distribution + additive noise
+    * heart rate with normal variation around 70–120 depending on activity
+    * sync events occurring 1–5 times per day
+    * usage patterns following a circadian rhythm
+2. User behavior includes:
+    * full discharge cycles 5–20 times per month
+    * long GPS/HR sessions increasing battery consumption
+    * baseline consumption depending on user type (light/medium/heavy)
+3. Current dataset limitations:
+    * no seasonal drift
+    * no real hardware failures
+    * no GPS or motion signals
+4. How to improve:
+    * add temporal drift
+    * introduce users with anomalous behaviors
+    * create more complex correlations between HR/usage/battery
