@@ -27,6 +27,11 @@ def health():
     """Health check endpoint."""
     return {"status": "ok"}
 
+@app.get("/schema")
+def schema():
+    """Returns features order."""
+    return {"features": model.feature_names_in_.tolist()}
+
 @app.post("/predict")
 def predict(payload: BatteryInput):
     """Make a prediction using the pre-trained model."""
