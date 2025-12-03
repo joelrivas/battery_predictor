@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 
+
 class FeatureEngineer:
     """
     Feature engineering for battery discharge prediction.

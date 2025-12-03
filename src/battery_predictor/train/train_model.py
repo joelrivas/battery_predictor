@@ -14,16 +14,27 @@ from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 def train(inp, model_out):
     """
     Docstring for train
-    
+
     :param inp: Description
     :param model_out: Description
     """
 
     seed = 23
     df = pd.read_parquet(inp)
-    X = df[["last_battery", "mean_battery", "min_battery", "max_battery", "count_events", "std_battery"]]
+    X = df[
+        [
+            "last_battery",
+            "mean_battery",
+            "min_battery",
+            "max_battery",
+            "count_events",
+            "std_battery",
+        ]
+    ]
     y = df["target_minutes"]
-    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=seed)
+    X_train, X_val, y_train, y_val = train_test_split(
+        X, y, test_size=0.2, random_state=seed
+    )
 
     model = LGBMRegressor(n_estimators=200, learning_rate=0.05)
     model.fit(X_train, y_train)

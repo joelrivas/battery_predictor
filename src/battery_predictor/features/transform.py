@@ -2,14 +2,15 @@
 
 import argparse
 import pandas as pd
-from battery_predictor.features.featurize import FeatureEngineer # pylint: disable=import-error
-
+from battery_predictor.features.featurize import (
+    FeatureEngineer,
+)  # pylint: disable=import-error
 
 
 def transform(inp, out, battery_threshold=0.10):
     """
     Generate features and save them on output path.
-    
+
     :param inp: path to parquet file
     :param out: path to save features in parquet format
     """

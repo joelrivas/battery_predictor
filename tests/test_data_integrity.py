@@ -1,4 +1,4 @@
-""" Docstring for tests.test_data_integrity """
+"""Docstring for tests.test_data_integrity"""
 
 import pandas as pd
 
@@ -9,6 +9,7 @@ def test_battery_range():
     """
     df = pd.read_parquet("data/sample_events.parquet")
     assert df["battery_pct"].between(0, 100).all()
+
 
 def test_ordered_timestamps():
     """

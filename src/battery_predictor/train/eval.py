@@ -11,14 +11,23 @@ from sklearn.metrics import mean_absolute_error, root_mean_squared_error
 def evaluate(model_path, test_path):
     """
     Docstring for evaluate
-    
+
     :param model_path: Description
     :param test_path: Description
     """
 
     model = joblib.load(model_path)
     df = pd.read_parquet(test_path)
-    X = df[["last_battery", "mean_battery", "min_battery", "max_battery", "count_events", "std_battery"]]
+    X = df[
+        [
+            "last_battery",
+            "mean_battery",
+            "min_battery",
+            "max_battery",
+            "count_events",
+            "std_battery",
+        ]
+    ]
     y = df["target_minutes"]
 
     y_pred = model.predict(X)
