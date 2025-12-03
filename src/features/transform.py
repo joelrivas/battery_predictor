@@ -2,12 +2,11 @@
 
 import os
 import sys
-import argparse
-import pandas as pd
-
 root_path = os.getcwd()
 sys.path.append(root_path)
 
+import argparse
+import pandas as pd
 from src.features.featurize import FeatureEngineer
 
 
