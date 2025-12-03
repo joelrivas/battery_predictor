@@ -1,13 +1,9 @@
 """Feature engineering: create features from raw events."""
 
-import os
-import sys
-root_path = os.getcwd()
-sys.path.append(root_path)
-
 import argparse
 import pandas as pd
-from src.features.featurize import FeatureEngineer
+from battery_predictor.features.featurize import FeatureEngineer # pylint: disable=import-error
+
 
 
 def transform(inp, out, battery_threshold=0.10):

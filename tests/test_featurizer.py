@@ -1,12 +1,7 @@
 """Docstring for tests.test_featurizer"""
 
-import os
-import sys
 import pandas as pd
-
-root_path = os.getcwd()
-sys.path.append(root_path)
-from src.features.featurize import FeatureEngineer
+from battery_predictor.features.featurize import FeatureEngineer # type: ignore
 
 
 def test_featurizer_outputs_expected_columns():
