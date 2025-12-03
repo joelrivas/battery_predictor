@@ -1,6 +1,7 @@
 """Docstring for tests.test_featurizer"""
 
 import pandas as pd
+# pylint: disable=import-error
 from battery_predictor.features.featurize import FeatureEngineer # type: ignore
 
 
